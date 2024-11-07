@@ -19,5 +19,8 @@ class CryptoTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func bind(_ crypto: Crypto) {
+        
+    }
 }
