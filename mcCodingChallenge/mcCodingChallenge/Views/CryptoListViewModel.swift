@@ -11,6 +11,7 @@ import Combine
 
 
 final class CryptoListViewModel: NSObject, UITableViewDataSource {
+    var cancellables = Set<AnyCancellable>()
     enum CryptoListViewState {
         case loading
         case content
@@ -30,16 +31,16 @@ final class CryptoListViewModel: NSObject, UITableViewDataSource {
     }
     
     private func fetchData() {
-        _ = cryptoService.getCryptoList().sink { [weak self] completion in
+        cryptoService.getCryptoList().sink { [weak self] completion in
             switch completion {
             case .finished:
                 self?.viewState.send(.content)
-            case .failure(let error):
+            case .failure(_):
                 self?.viewState.send(.error)
             }
         } receiveValue: { [weak self] list in
             self?.cryptoList = list
-        }
+        }.store(in: &cancellables)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -53,7 +54,6 @@ final class CryptoListViewModel: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let crypto = cryptoList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "CryptoTableViewCell", for: indexPath) as! CryptoTableViewCell
-        
         cell.bind(crypto)
         
         return cell
