@@ -11,13 +11,13 @@ import Combine
 class CryptoListViewController: UIViewController, UITableViewDelegate {
     var cancellables = Set<AnyCancellable>()
     
+    let viewModel: CryptoListViewModel = CryptoListViewModel()
+    
     //UI
     lazy var loader: UIActivityIndicatorView = {
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        let loadingIndicator = UIActivityIndicatorView(style: .large)
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
         loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.large
-        loadingIndicator.startAnimating()
         
         return loadingIndicator
     }()
@@ -28,61 +28,44 @@ class CryptoListViewController: UIViewController, UITableViewDelegate {
         tableView.delegate = self
         tableView.dataSource = viewModel
         tableView.register(CryptoTableViewCell.self, forCellReuseIdentifier: "CryptoTableViewCell")
+        tableView.estimatedRowHeight = 56
+        tableView.rowHeight = UITableView.automaticDimension
         
         return tableView
     }()
-    
-    let viewModel: CryptoListViewModel = CryptoListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Crypto"
         self.view.backgroundColor = .white
+        showLoader()
         setupConstraints()
         bindViewState()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         setupConstraints()
-        loader.startAnimating()
     }
-    
     
     func bindViewState() {
         viewModel.viewState.sink { [weak self] viewState in
             switch viewState {
             case .loading:
-                print("loading")
-                self?.loader.startAnimating()
+                self?.showLoader()
                 
             case .content:
-                print("Display content")
-                self?.tableView.reloadData()
-//                self?.loader.stopAnimating()
-                
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+                self?.hideLoader()
                 
             case .error:
-                print("Display error")
-                self?.loader.stopAnimating()
+                self?.hideLoader()
                 
             }
         }.store(in: &cancellables)
     }
     
     func setupConstraints() {
-        // Loader constraints
-        
-        view.addSubview(loader)
-        NSLayoutConstraint.activate([
-            loader.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            loader.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
-        ])
-        
         // Table view constraints
-        
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -90,6 +73,25 @@ class CryptoListViewController: UIViewController, UITableViewDelegate {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        // Loader constraints
+        view.addSubview(loader)
+        NSLayoutConstraint.activate([
+            loader.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            loader.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+        ])
+    }
+    
+    func showLoader() {
+        DispatchQueue.main.async { [weak self] in
+            self?.loader.startAnimating()
+        }
+    }
+    
+    func hideLoader() {
+        DispatchQueue.main.async { [weak self] in
+            self?.loader.stopAnimating()
+        }
     }
 }
 
