@@ -38,6 +38,7 @@ class CryptoListViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         self.title = "Crypto"
+        self.view.backgroundColor = .white
         setupConstraints()
         bindViewState()
     }
