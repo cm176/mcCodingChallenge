@@ -2,14 +2,13 @@
 //  AppDelegate.swift
 //  mcCodingChallenge
 //
-//  Created by Gloomy on 7/11/2024.
+//  Created by Cliff on 7/11/2024.
 //
 
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
