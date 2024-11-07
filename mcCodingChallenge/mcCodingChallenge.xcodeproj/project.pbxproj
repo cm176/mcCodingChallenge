@@ -19,6 +19,7 @@
 		A83F45652CDCA9280043F245 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45642CDCA9280043F245 /* Crypto.swift */; };
 		A83F45692CDCBB8D0043F245 /* CryptoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45682CDCBB8D0043F245 /* CryptoListViewModel.swift */; };
 		A83F456B2CDCBC510043F245 /* CryptoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F456A2CDCBC510043F245 /* CryptoTableViewCell.swift */; };
+		A83F456E2CDD2C300043F245 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F456D2CDD2C300043F245 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		A83F45642CDCA9280043F245 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A83F45682CDCBB8D0043F245 /* CryptoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewModel.swift; sourceTree = "<group>"; };
 		A83F456A2CDCBC510043F245 /* CryptoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCell.swift; sourceTree = "<group>"; };
+		A83F456D2CDD2C300043F245 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		A83F452F2CDCA3AE0043F245 /* mcCodingChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				A83F456C2CDD2C250043F245 /* Utils */,
 				A83F45672CDCAA840043F245 /* Views */,
 				A83F45662CDCAA790043F245 /* Network */,
 				A83F45632CDCA8F00043F245 /* Model */,
@@ -158,6 +161,14 @@
 				A83F456A2CDCBC510043F245 /* CryptoTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A83F456C2CDD2C250043F245 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A83F456D2CDD2C300043F245 /* ImageCache.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +303,7 @@
 			files = (
 				A83F45622CDCA5E40043F245 /* CryptoService.swift in Sources */,
 				A83F45692CDCBB8D0043F245 /* CryptoListViewModel.swift in Sources */,
+				A83F456E2CDD2C300043F245 /* ImageCache.swift in Sources */,
 				A83F45352CDCA3AE0043F245 /* CryptoListViewController.swift in Sources */,
 				A83F45652CDCA9280043F245 /* Crypto.swift in Sources */,
 				A83F45312CDCA3AE0043F245 /* AppDelegate.swift in Sources */,
