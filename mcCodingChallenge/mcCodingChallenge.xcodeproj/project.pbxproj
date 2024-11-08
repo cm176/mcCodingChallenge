@@ -26,6 +26,7 @@
 		A83F45772CDDA5110043F245 /* MockDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45762CDDA5110043F245 /* MockDataTask.swift */; };
 		A83F45792CDDA6910043F245 /* CryptoMockJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45782CDDA6910043F245 /* CryptoMockJSON.swift */; };
 		A83F457D2CDDBBF30043F245 /* ImageCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F457C2CDDBBF30043F245 /* ImageCacheTests.swift */; };
+		A83F457F2CDDE07E0043F245 /* MockCryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F457E2CDDE07E0043F245 /* MockCryptoService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		A83F45762CDDA5110043F245 /* MockDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataTask.swift; sourceTree = "<group>"; };
 		A83F45782CDDA6910043F245 /* CryptoMockJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoMockJSON.swift; sourceTree = "<group>"; };
 		A83F457C2CDDBBF30043F245 /* ImageCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheTests.swift; sourceTree = "<group>"; };
+		A83F457E2CDDE07E0043F245 /* MockCryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCryptoService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				A83F45742CDDA4D70043F245 /* MockUrlSession.swift */,
 				A83F45762CDDA5110043F245 /* MockDataTask.swift */,
 				A83F45782CDDA6910043F245 /* CryptoMockJSON.swift */,
+				A83F457E2CDDE07E0043F245 /* MockCryptoService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				A83F45772CDDA5110043F245 /* MockDataTask.swift in Sources */,
 				A83F457D2CDDBBF30043F245 /* ImageCacheTests.swift in Sources */,
 				A83F45792CDDA6910043F245 /* CryptoMockJSON.swift in Sources */,
+				A83F457F2CDDE07E0043F245 /* MockCryptoService.swift in Sources */,
 				A83F45722CDDA33C0043F245 /* CryptoServiceTests.swift in Sources */,
 				A83F45752CDDA4D70043F245 /* MockUrlSession.swift in Sources */,
 				A83F45482CDCA3B10043F245 /* CryptoListViewModelTests.swift in Sources */,

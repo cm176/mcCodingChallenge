@@ -20,7 +20,7 @@ final class CryptoListViewModel: NSObject {
     }
     
     private(set) var viewState = PassthroughSubject<CryptoListViewState, Never>()
-    private var cryptoList: [Crypto] = []
+    private(set) var cryptoList: [Crypto] = []
     private let cryptoService: CryptoServicing
     
     init(cryptoService: CryptoServicing = CryptoService()) {
