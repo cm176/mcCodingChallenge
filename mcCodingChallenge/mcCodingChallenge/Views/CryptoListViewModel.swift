@@ -16,12 +16,14 @@ final class CryptoListViewModel: NSObject {
     enum CryptoListViewState {
         case loading
         case content
+        case detail(Crypto)
         case error
     }
     
     private(set) var viewState = PassthroughSubject<CryptoListViewState, Never>()
     private(set) var cryptoList: [Crypto] = []
     private let cryptoService: CryptoServicing
+    let title = "Crypto"
     
     init(cryptoService: CryptoServicing = CryptoService()) {
         self.cryptoService = cryptoService
@@ -46,7 +48,7 @@ final class CryptoListViewModel: NSObject {
     }
     
     private func sortCrypto() {
-        cryptoList.sort { $0.value > $1.value }
+        cryptoList.sort { $0.currentPrice > $1.currentPrice }
         cryptoList = Array(cryptoList.prefix(5))
     }
 }
@@ -68,5 +70,19 @@ extension CryptoListViewModel: UITableViewDataSource {
         cell.bind(crypto)
         
         return cell
+    }
+}
+
+// MARK: UITableViewDelegate
+
+extension CryptoListViewModel: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Deselect the cell after selection
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let selectedCrypto = cryptoList[indexPath.row]
+
+        // navigate forward
+        viewState.send(.detail(selectedCrypto))
     }
 }

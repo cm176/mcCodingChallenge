@@ -29,7 +29,7 @@ final class CryptoListViewController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.delegate = self
+        tableView.delegate = viewModel
         tableView.dataSource = viewModel
         tableView.register(CryptoTableViewCell.self, forCellReuseIdentifier: "CryptoTableViewCell")
         tableView.estimatedRowHeight = 56
@@ -42,8 +42,14 @@ final class CryptoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Crypto"
+        self.title = viewModel.title
         self.view.backgroundColor = .white
+        
+        // Hide back button text
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        navigationItem.backBarButtonItem = backButton
+        
         showLoader()
         setupConstraints()
         bindViewState()
@@ -63,6 +69,11 @@ final class CryptoListViewController: UIViewController {
                     self?.tableView.reloadData()
                 }
                 self?.hideLoader()
+                
+            case .detail(let crypto):
+                let cryptoDetailViewModel = CryptoDetailViewModel(crypto: crypto)
+                let cryptoDetailViewController = CryptoDetailViewController(viewModel: cryptoDetailViewModel)
+                self?.navigationController?.pushViewController(cryptoDetailViewController, animated: true)
                 
             case .error:
                 self?.displayError()
@@ -126,15 +137,6 @@ final class CryptoListViewController: UIViewController {
     /// Triggers on pull down to fetch again
     @objc func refreshData() {
         viewModel.fetchData()
-    }
-}
-
-// MARK: UITableViewDataSource
-
-extension CryptoListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Deselect the cell after selection
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

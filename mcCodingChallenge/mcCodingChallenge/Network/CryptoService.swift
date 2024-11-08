@@ -29,13 +29,13 @@ final class CryptoService: CryptoServicing {
     
     /// Fetch Crypto Currency list
     /// /coins/markets
-    /// Params: vs_currecny = usd
+    /// Params: vs_currecny = usd, precision = 2
     func getCryptoList() -> AnyPublisher<[Crypto], Error> {
         return Future<[Crypto], Error> { [weak self] promise in
             guard let self = self else { return }
             
             // Setup request
-            if let url = URL(string: "\(baseUrl)/coins/markets?vs_currency=usd") {
+            if let url = URL(string: "\(baseUrl)/coins/markets?vs_currency=usd&precision=2") {
                 var request = URLRequest(url: url)
                 request.httpMethod = "GET"
                 request.addValue("application/json", forHTTPHeaderField: "accept")

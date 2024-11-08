@@ -18,7 +18,7 @@ final class MockCryptoService: CryptoServicing {
         }
         
         
-        return Result.success([Crypto(name: "CliffCoin", symbol: "CC", value: 100, imageUrl: "test"),
-                               Crypto(name: "MasterCoin", symbol: "MC", value: 200, imageUrl: "testing")]).publisher.eraseToAnyPublisher()
+        return Result.success([Crypto(name: "CliffCoin", symbol: "CC", currentPrice: 100, priceChange: 5, priceChangePercent: 5, imageUrl: "test"),
+                               Crypto(name: "MasterCoin", symbol: "MC", currentPrice: 200, priceChange: 5, priceChangePercent: 5, imageUrl: "testing")]).publisher.eraseToAnyPublisher()
     }
 }

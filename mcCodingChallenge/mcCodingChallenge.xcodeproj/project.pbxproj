@@ -27,6 +27,10 @@
 		A83F45792CDDA6910043F245 /* CryptoMockJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45782CDDA6910043F245 /* CryptoMockJSON.swift */; };
 		A83F457D2CDDBBF30043F245 /* ImageCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F457C2CDDBBF30043F245 /* ImageCacheTests.swift */; };
 		A83F457F2CDDE07E0043F245 /* MockCryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F457E2CDDE07E0043F245 /* MockCryptoService.swift */; };
+		A83F45812CDDF4480043F245 /* CryptoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45802CDDF4470043F245 /* CryptoDetailViewController.swift */; };
+		A83F45852CDDF4950043F245 /* CryptoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45842CDDF4950043F245 /* CryptoDetailViewModel.swift */; };
+		A83F45872CDE135C0043F245 /* NumberFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45862CDE135C0043F245 /* NumberFormatterExtension.swift */; };
+		A83F45892CDE39270043F245 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45882CDE39270043F245 /* UIImageViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,10 @@
 		A83F45782CDDA6910043F245 /* CryptoMockJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoMockJSON.swift; sourceTree = "<group>"; };
 		A83F457C2CDDBBF30043F245 /* ImageCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheTests.swift; sourceTree = "<group>"; };
 		A83F457E2CDDE07E0043F245 /* MockCryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCryptoService.swift; sourceTree = "<group>"; };
+		A83F45802CDDF4470043F245 /* CryptoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewController.swift; sourceTree = "<group>"; };
+		A83F45842CDDF4950043F245 /* CryptoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewModel.swift; sourceTree = "<group>"; };
+		A83F45862CDE135C0043F245 /* NumberFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtension.swift; sourceTree = "<group>"; };
+		A83F45882CDE39270043F245 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +184,8 @@
 				A83F45342CDCA3AE0043F245 /* CryptoListViewController.swift */,
 				A83F45682CDCBB8D0043F245 /* CryptoListViewModel.swift */,
 				A83F456A2CDCBC510043F245 /* CryptoTableViewCell.swift */,
+				A83F45802CDDF4470043F245 /* CryptoDetailViewController.swift */,
+				A83F45842CDDF4950043F245 /* CryptoDetailViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +195,8 @@
 			children = (
 				A83F456D2CDD2C300043F245 /* ImageCache.swift */,
 				A83F456F2CDD3E3A0043F245 /* UrlCacheExtension.swift */,
+				A83F45862CDE135C0043F245 /* NumberFormatterExtension.swift */,
+				A83F45882CDE39270043F245 /* UIImageViewExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -333,11 +345,15 @@
 				A83F45622CDCA5E40043F245 /* CryptoService.swift in Sources */,
 				A83F45692CDCBB8D0043F245 /* CryptoListViewModel.swift in Sources */,
 				A83F456E2CDD2C300043F245 /* ImageCache.swift in Sources */,
+				A83F45872CDE135C0043F245 /* NumberFormatterExtension.swift in Sources */,
 				A83F45352CDCA3AE0043F245 /* CryptoListViewController.swift in Sources */,
+				A83F45812CDDF4480043F245 /* CryptoDetailViewController.swift in Sources */,
 				A83F45652CDCA9280043F245 /* Crypto.swift in Sources */,
 				A83F45312CDCA3AE0043F245 /* AppDelegate.swift in Sources */,
 				A83F45332CDCA3AE0043F245 /* SceneDelegate.swift in Sources */,
+				A83F45852CDDF4950043F245 /* CryptoDetailViewModel.swift in Sources */,
 				A83F45702CDD3E3A0043F245 /* UrlCacheExtension.swift in Sources */,
+				A83F45892CDE39270043F245 /* UIImageViewExtension.swift in Sources */,
 				A83F456B2CDCBC510043F245 /* CryptoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,20 +10,26 @@ import Foundation
 class Crypto: Decodable {
     let name: String
     let symbol: String
-    let value: Decimal
+    let currentPrice: Decimal
     let imageUrl: String
+    let priceChange: Decimal
+    let priceChangePercent: Decimal
     
     enum CodingKeys: String, CodingKey {
         case name = "name"
         case symbol = "symbol"
-        case value = "current_price"
+        case currentPrice = "current_price"
+        case priceChange = "price_change_24h"
+        case priceChangePercent = "price_change_percentage_24h"
         case imageUrl = "image"
     }
     
-    init(name: String, symbol: String, value: Decimal, imageUrl: String) {
+    init(name: String, symbol: String, currentPrice: Decimal, priceChange: Decimal, priceChangePercent: Decimal, imageUrl: String) {
         self.name = name
         self.symbol = symbol
-        self.value = value
+        self.currentPrice = currentPrice
+        self.priceChange = priceChange
+        self.priceChangePercent = priceChangePercent
         self.imageUrl = imageUrl
     }
 }

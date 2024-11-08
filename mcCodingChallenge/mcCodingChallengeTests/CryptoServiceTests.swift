@@ -25,6 +25,7 @@ final class CryptoServiceTests: XCTestCase {
     override func tearDown() {
         cryptoService = nil
         mockSession = nil
+        mockCache.removeAllCachedResponses()
         mockCache = nil
         super.tearDown()
     }
