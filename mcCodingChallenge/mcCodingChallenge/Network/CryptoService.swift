@@ -13,6 +13,7 @@ protocol CryptoServicing {
     func getCryptoList() -> AnyPublisher<[Crypto], Error>
 }
 
+// Pagination on the free API doesn't seem very robust as it provides no page information
 final class CryptoService: CryptoServicing {
     // Set this to your own API Key
     private let APIKey = ""
