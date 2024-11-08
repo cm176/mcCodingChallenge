@@ -15,7 +15,7 @@ protocol CryptoServicing {
 
 final class CryptoService: CryptoServicing {
     // Set this to your own API Key
-    private let APIKey = "CG-98iTcqvHahg8nayMn9NZMJr2"
+    private let APIKey = ""
     private let session: URLSession
     private let cache: URLCache
     private let baseUrl: String
