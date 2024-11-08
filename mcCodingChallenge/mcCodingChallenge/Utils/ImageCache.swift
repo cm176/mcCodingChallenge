@@ -7,25 +7,21 @@
 
 import UIKit
 
-class ImageCache {
-    
-    // Create a shared instance of the cache
+final class ImageCache {
     static let shared = ImageCache()
-    
-    // Initialize the cache
     private let imageCache = NSCache<NSString, UIImage>()
     
-    // Function to store an image in cache
-    func cacheImage(image: UIImage, forKey key: String) {
+    /// Store image
+    func cache(_ image: UIImage, for key: String) {
         imageCache.setObject(image, forKey: key as NSString)
     }
     
-    // Function to retrieve an image from cache
-    func getImage(forKey key: String) -> UIImage? {
+    /// Fetch cached image
+    func getImage(for key: String) -> UIImage? {
         return imageCache.object(forKey: key as NSString)
     }
     
-    // Function to clear cache
+    /// Clears the entire cache
     func clearCache() {
         imageCache.removeAllObjects()
     }

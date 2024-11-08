@@ -8,12 +8,16 @@
 import UIKit
 import Combine
 
-class CryptoListViewController: UIViewController, UITableViewDelegate {
+final class CryptoListViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     
     let viewModel: CryptoListViewModel = CryptoListViewModel()
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return refreshControl
+    }()
     
-    //UI
     lazy var loader: UIActivityIndicatorView = {
         let loadingIndicator = UIActivityIndicatorView(style: .large)
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -30,6 +34,7 @@ class CryptoListViewController: UIViewController, UITableViewDelegate {
         tableView.register(CryptoTableViewCell.self, forCellReuseIdentifier: "CryptoTableViewCell")
         tableView.estimatedRowHeight = 56
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.refreshControl = refreshControl
         
         return tableView
     }()
@@ -43,8 +48,10 @@ class CryptoListViewController: UIViewController, UITableViewDelegate {
         setupConstraints()
         bindViewState()
         setupConstraints()
+        viewModel.fetchData()
     }
     
+    /// Begin observing the view models view state and act according to published values
     func bindViewState() {
         viewModel.viewState.sink { [weak self] viewState in
             switch viewState {
@@ -58,12 +65,14 @@ class CryptoListViewController: UIViewController, UITableViewDelegate {
                 self?.hideLoader()
                 
             case .error:
+                self?.displayError()
                 self?.hideLoader()
                 
             }
         }.store(in: &cancellables)
     }
     
+    /// Setup constraints for the layout
     func setupConstraints() {
         // Table view constraints
         view.addSubview(tableView)
@@ -82,16 +91,50 @@ class CryptoListViewController: UIViewController, UITableViewDelegate {
         ])
     }
     
+    /// Show the loader
     func showLoader() {
         DispatchQueue.main.async { [weak self] in
             self?.loader.startAnimating()
         }
     }
     
+    /// Hide the loader
     func hideLoader() {
         DispatchQueue.main.async { [weak self] in
+            self?.refreshControl.endRefreshing()
             self?.loader.stopAnimating()
         }
+    }
+    
+    /// Create and display a generic error message that retries on action
+    func displayError() {
+        let alert = UIAlertController(title: "Something went wrong",
+                                      message: nil,
+                                      preferredStyle: .alert)
+
+        let action = UIAlertAction(title: "Try again", style: .default) { [weak self] _ in
+            self?.viewModel.fetchData()
+        }
+    
+        alert.addAction(action)
+
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    /// Triggers on pull down to fetch again
+    @objc func refreshData() {
+        viewModel.fetchData()
+    }
+}
+
+// MARK: UITableViewDataSource
+
+extension CryptoListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Deselect the cell after selection
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

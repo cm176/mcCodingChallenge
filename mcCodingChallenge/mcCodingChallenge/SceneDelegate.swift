@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -22,6 +21,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = UINavigationController(rootViewController: CryptoListViewController())
         window?.makeKeyAndVisible()
+        
+        // Configure URLCache
+        let memoryCapacity = 50 * 1024 * 1024 // 50 MB in memory
+        let diskCapacity = 200 * 1024 * 1024 // 200 MB on disk
+        let diskPath = "urlCache"
+
+        let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: diskPath)
+
+        // Set the cache to be used globally
+        URLCache.shared = urlCache
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

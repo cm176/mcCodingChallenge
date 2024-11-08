@@ -10,27 +10,28 @@ import UIKit
 import Combine
 
 
-final class CryptoListViewModel: NSObject, UITableViewDataSource {
+final class CryptoListViewModel: NSObject {
     var cancellables = Set<AnyCancellable>()
+    
     enum CryptoListViewState {
         case loading
         case content
         case error
     }
     
-    private(set) var viewState = CurrentValueSubject<CryptoListViewState, Never>(.loading)
-    private(set) var cryptoList: [Crypto] = []
+    private(set) var viewState = PassthroughSubject<CryptoListViewState, Never>()
+    private var cryptoList: [Crypto] = []
     private let cryptoService: CryptoServicing
     
     init(cryptoService: CryptoServicing = CryptoService()) {
         self.cryptoService = cryptoService
         
         super.init()
-        
-        fetchData()
     }
     
-    private func fetchData() {
+    /// Fetch data from service and publish view state accordingly
+    func fetchData() {
+        viewState.send(.loading)
         cryptoService.getCryptoList().sink { [weak self] completion in
             switch completion {
             case .finished:
@@ -40,9 +41,19 @@ final class CryptoListViewModel: NSObject, UITableViewDataSource {
             }
         } receiveValue: { [weak self] list in
             self?.cryptoList = list
+            self?.sortCrypto()
         }.store(in: &cancellables)
     }
     
+    private func sortCrypto() {
+        cryptoList.sort { $0.value > $1.value }
+        cryptoList = Array(cryptoList.prefix(5))
+    }
+}
+
+// MARK: UITableViewDataSource
+
+extension CryptoListViewModel: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

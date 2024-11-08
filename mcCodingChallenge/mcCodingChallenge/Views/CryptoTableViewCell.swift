@@ -108,7 +108,7 @@ class CryptoTableViewCell: UITableViewCell {
     }
     
     func fetch(_ imageUrl: String) {
-        if let cachedImage = ImageCache.shared.getImage(forKey: imageUrl) {
+        if let cachedImage = ImageCache.shared.getImage(for: imageUrl) {
             // Use Cached Image
             iconImageView.image = cachedImage
         } else {
@@ -124,7 +124,7 @@ class CryptoTableViewCell: UITableViewCell {
                     DispatchQueue.main.async {
                         if let image = UIImage(data: data) {
                             self?.iconImageView.image = image
-                            ImageCache.shared.cacheImage(image: image, forKey: imageUrl)
+                            ImageCache.shared.cache(image, for: imageUrl)
                         } else {
                             print("Failed to create image from data")
                         }
