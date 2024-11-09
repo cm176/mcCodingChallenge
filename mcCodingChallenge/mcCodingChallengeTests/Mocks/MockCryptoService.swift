@@ -18,7 +18,16 @@ final class MockCryptoService: CryptoServicing {
         }
         
         
-        return Result.success([Crypto(name: "CliffCoin", symbol: "CC", currentPrice: 100, priceChange: 5, priceChangePercent: 5, imageUrl: "test"),
-                               Crypto(name: "MasterCoin", symbol: "MC", currentPrice: 200, priceChange: 5, priceChangePercent: 5, imageUrl: "testing")]).publisher.eraseToAnyPublisher()
+        return Result.success([Crypto(id: "one", name: "CliffCoin", symbol: "CC", currentPrice: 100, priceChange: 5, priceChangePercent: 5, imageUrl: "test"),
+                               Crypto(id: "two", name: "MasterCoin", symbol: "MC", currentPrice: 200, priceChange: 5, priceChangePercent: 5, imageUrl: "testing")]).publisher.eraseToAnyPublisher()
+    }
+    
+    func getCryptoChart(for cryptoId: String) -> AnyPublisher<mcCodingChallenge.CryptoChart, any Error> {
+        if self.shouldError {
+            return Result.failure(NSError()).publisher.eraseToAnyPublisher()
+        }
+        
+        
+        return Result.success(CryptoChart(prices: [])).publisher.eraseToAnyPublisher()
     }
 }

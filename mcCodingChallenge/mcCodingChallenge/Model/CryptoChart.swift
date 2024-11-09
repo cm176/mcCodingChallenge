@@ -9,4 +9,8 @@ import Foundation
 
 class CryptoChart: Decodable {
     var prices: [[Decimal]]
+    
+    init(prices: [[Decimal]]) {
+        self.prices = prices
+    }
 }
