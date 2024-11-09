@@ -11,6 +11,15 @@ import Combine
 
 final class CryptoDetailViewModel {
     var cancellables = Set<AnyCancellable>()
+    
+    enum CryptoDetailViewState {
+        case loading
+        case content
+        case error
+    }
+    
+    private(set) var viewState = PassthroughSubject<CryptoDetailViewState, Never>()
+    private let cryptoService: CryptoServicing
     private let crypto: Crypto
     
     // UI
@@ -23,7 +32,22 @@ final class CryptoDetailViewModel {
     var iconUrl: String { crypto.imageUrl }
     var today: String { "Today" }
     
-    init(crypto: Crypto) {
+    init(crypto: Crypto, cryptoSerivce: CryptoServicing = CryptoService()) {
         self.crypto = crypto
+        self.cryptoService = cryptoSerivce
+    }
+    
+    func fetchData() {
+        cryptoService.getCryptoChart(for: crypto.id).sink { [weak self] completion in
+            switch completion {
+            case .finished:
+                self?.viewState.send(.content)
+                
+            case .failure(let error):
+                self?.viewState.send(.error)
+            }
+        } receiveValue: { chartData in
+            print(chartData)
+        }.store(in: &cancellables)
     }
 }

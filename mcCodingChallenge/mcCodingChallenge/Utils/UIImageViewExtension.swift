@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension UIImageView {
     func fetch(_ imageUrl: String) {
         if let cachedImage = ImageCache.shared.getImage(for: imageUrl) {

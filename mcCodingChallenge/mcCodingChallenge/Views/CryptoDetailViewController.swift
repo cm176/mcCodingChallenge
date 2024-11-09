@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import DGCharts
 
 class CryptoDetailViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
@@ -16,11 +17,11 @@ class CryptoDetailViewController: UIViewController {
     lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.alignment = .top
-        stackView.spacing = 8
+        stackView.axis = .vertical
+        stackView.spacing = 24
         
         stackView.addArrangedSubview(infoStackView)
+        stackView.addArrangedSubview(priceLineChartView)
         stackView.addArrangedSubview(UIView()) // Spacer view
         
         return stackView
@@ -47,7 +48,7 @@ class CryptoDetailViewController: UIViewController {
         
         stackView.addArrangedSubview(currentPriceLabel)
         stackView.addArrangedSubview(priceChangeStackView)
-        stackView.addArrangedSubview(UIView())
+//        stackView.addArrangedSubview(UIView()) // Spacer view
         
         return stackView
     }()
@@ -61,7 +62,7 @@ class CryptoDetailViewController: UIViewController {
         stackView.addArrangedSubview(priceChangeLabel)
         stackView.addArrangedSubview(priceChangePercentLabel)
         stackView.addArrangedSubview(todayLabel)
-        stackView.addArrangedSubview(UIView())
+//        stackView.addArrangedSubview(UIView()) // Spacer view
         
         return stackView
     }()
@@ -119,6 +120,23 @@ class CryptoDetailViewController: UIViewController {
         return imageView
     }()
     
+    lazy var priceLineChartView: LineChartView = {
+        let chart = LineChartView()
+        chart.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+        
+        chart.defaultSettings()
+        
+        chart.generateDataSet(for: [
+            ChartDataEntry(x: 100, y: 300),
+            ChartDataEntry(x: 200, y: 400),
+            ChartDataEntry(x: 300, y: 500),
+            ChartDataEntry(x: 400, y: 200),
+            ChartDataEntry(x: 500, y: 305)
+        ])
+        
+        return chart
+    }()
+    
     init(viewModel: CryptoDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -131,26 +149,30 @@ class CryptoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUI()
-    }
-    
-    func setUI() {
         self.title = viewModel.title
         self.view.backgroundColor = .white
-        
+        setupConstraints()
+    }
+    
+    func setupConstraints() {
         // stack view constraints
         view.addSubview(verticalStackView)
         NSLayoutConstraint.activate([
             verticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             verticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             verticalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 16)
         ])
         
         // Icon
         NSLayoutConstraint.activate([
             iconImageView.heightAnchor.constraint(equalToConstant: 50),
             iconImageView.widthAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        // Line Chart
+        NSLayoutConstraint.activate([
+            priceLineChartView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
 }

@@ -11,6 +11,7 @@ import Combine
 
 protocol CryptoServicing {
     func getCryptoList() -> AnyPublisher<[Crypto], Error>
+    func getCryptoChart(for cryptoId: String) -> AnyPublisher<CryptoChart, Error>
 }
 
 // Pagination on the free API doesn't seem very robust as it provides no page information
@@ -77,6 +78,13 @@ final class CryptoService: CryptoServicing {
                     }.resume()
                 }
             }
+        }.eraseToAnyPublisher()
+    }
+    
+    /// Get chart data for specified crypto
+    func getCryptoChart(for cryptoId: String) -> AnyPublisher<CryptoChart, any Error> {
+        return Future<CryptoChart, Error> { [weak self] promise in
+            guard let self = self else { return }
         }.eraseToAnyPublisher()
     }
     

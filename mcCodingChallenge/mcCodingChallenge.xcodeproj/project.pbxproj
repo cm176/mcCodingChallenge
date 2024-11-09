@@ -31,6 +31,9 @@
 		A83F45852CDDF4950043F245 /* CryptoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45842CDDF4950043F245 /* CryptoDetailViewModel.swift */; };
 		A83F45872CDE135C0043F245 /* NumberFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45862CDE135C0043F245 /* NumberFormatterExtension.swift */; };
 		A83F45892CDE39270043F245 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45882CDE39270043F245 /* UIImageViewExtension.swift */; };
+		A83F45962CDE68FC0043F245 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = A83F45952CDE68FC0043F245 /* DGCharts */; };
+		A83F45982CDE816D0043F245 /* LineChartViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45972CDE816D0043F245 /* LineChartViewExtension.swift */; };
+		A83F459A2CDE83050043F245 /* CryptoChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F45992CDE83050043F245 /* CryptoChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,8 @@
 		A83F45842CDDF4950043F245 /* CryptoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewModel.swift; sourceTree = "<group>"; };
 		A83F45862CDE135C0043F245 /* NumberFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtension.swift; sourceTree = "<group>"; };
 		A83F45882CDE39270043F245 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		A83F45972CDE816D0043F245 /* LineChartViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartViewExtension.swift; sourceTree = "<group>"; };
+		A83F45992CDE83050043F245 /* CryptoChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A83F45962CDE68FC0043F245 /* DGCharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				A83F45642CDCA9280043F245 /* Crypto.swift */,
+				A83F45992CDE83050043F245 /* CryptoChart.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,6 +204,7 @@
 				A83F456F2CDD3E3A0043F245 /* UrlCacheExtension.swift */,
 				A83F45862CDE135C0043F245 /* NumberFormatterExtension.swift */,
 				A83F45882CDE39270043F245 /* UIImageViewExtension.swift */,
+				A83F45972CDE816D0043F245 /* LineChartViewExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -228,6 +236,9 @@
 			dependencies = (
 			);
 			name = mcCodingChallenge;
+			packageProductDependencies = (
+				A83F45952CDE68FC0043F245 /* DGCharts */,
+			);
 			productName = mcCodingChallenge;
 			productReference = A83F452D2CDCA3AE0043F245 /* mcCodingChallenge.app */;
 			productType = "com.apple.product-type.application";
@@ -300,6 +311,9 @@
 				Base,
 			);
 			mainGroup = A83F45242CDCA3AE0043F245;
+			packageReferences = (
+				A83F45942CDE68FC0043F245 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = A83F452E2CDCA3AE0043F245 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -346,9 +360,11 @@
 				A83F45692CDCBB8D0043F245 /* CryptoListViewModel.swift in Sources */,
 				A83F456E2CDD2C300043F245 /* ImageCache.swift in Sources */,
 				A83F45872CDE135C0043F245 /* NumberFormatterExtension.swift in Sources */,
+				A83F459A2CDE83050043F245 /* CryptoChart.swift in Sources */,
 				A83F45352CDCA3AE0043F245 /* CryptoListViewController.swift in Sources */,
 				A83F45812CDDF4480043F245 /* CryptoDetailViewController.swift in Sources */,
 				A83F45652CDCA9280043F245 /* Crypto.swift in Sources */,
+				A83F45982CDE816D0043F245 /* LineChartViewExtension.swift in Sources */,
 				A83F45312CDCA3AE0043F245 /* AppDelegate.swift in Sources */,
 				A83F45332CDCA3AE0043F245 /* SceneDelegate.swift in Sources */,
 				A83F45852CDDF4950043F245 /* CryptoDetailViewModel.swift in Sources */,
@@ -468,6 +484,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -523,6 +540,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -689,6 +707,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A83F45942CDE68FC0043F245 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A83F45952CDE68FC0043F245 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A83F45942CDE68FC0043F245 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A83F45252CDCA3AE0043F245 /* Project object */;
 }
